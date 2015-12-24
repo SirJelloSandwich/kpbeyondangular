@@ -9,6 +9,7 @@ beyondTodayApp.finalFeaturedUrl = "";
 beyondTodayApp.featuredIds = "";
 
 beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.pos = 0;
   $http.get(beyondTodayApp.featuredUrl).success(function(data) {
 
     for(var fff in data.data){
@@ -18,10 +19,16 @@ beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', function($scope
       beyondTodayApp.featuredIds =   beyondTodayApp.featuredIds.substring(0,  beyondTodayApp.featuredIds.length -1);
       beyondTodayApp.finalFeaturedUrl = beyondTodayApp.mediaUrl + beyondTodayApp.featuredIds;
 
-  $http.get(beyondTodayApp.finalFeaturedUrl).success(function(data) {
-    
-      $scope.featuredRowData = data.data;
-    });
+    $http.get(beyondTodayApp.finalFeaturedUrl).success(function(data) {
+
+        $scope.featuredRowData = data.data;
+      });
   });
+
+  $scope.ButtonClick = function () {
+        $scope.pos+=200;
+        $(".featuredRowContainer").css('-webkit-transform', 'translate3d('+$scope.pos+'px,0px,0px)');
+
+       }
 
 }]);
