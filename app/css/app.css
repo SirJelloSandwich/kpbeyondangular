@@ -1,17 +1,39 @@
 /* app css stylesheet */
 
 body {
-
+width:1920px;
+height: 1080px;
+overflow: hidden;
 }
 
 .featuredRowContainer{
   position: relative;
   top: 125px;
-  -webkit-transform: translate3d(100px,0px,0px) scale(1.0, 1.0);
-  transition: all 0.5s ease-out;
+  -webkit-transform: translate3d(-307.5px,0px,0px) scale(1.0, 1.0);
+  transition: all 0.5s cubic-bezier(0.7, 0.06, 0, 1.08);
 
 }
 
 .featuredRowItem{
   margin-right: 20px;
+  width : 825px;
+  height: 464px;
+}
+
+.fixedFocusBorder{
+  display: none;
+  position: absolute;
+  top:195px;
+  left: 548px;
+  outline: 8px solid #ba3a23;
+  outline-offset: 0px;
+  height: 464px;
+  width : 825px;
+  z-index: 1000;
+   -webkit-transform: translate3d(0px,0px,0px);
+    @include transition-property-transform-plus(opacity);
+    @include transition-duration(0.500s);
+    @include transition-timing-function(ease);
+    @include transform-origin(left center);
+    @include transition(all 500ms cubic-bezier(0.86, 0, 0.07, 1));
 }

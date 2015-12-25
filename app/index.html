@@ -10,11 +10,12 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="js/controllers.js"></script>
   </head>
-  <body ng-controller="FeaturedRowCtrl">
+  <body key-trap>
 
-    <div class="featuredRowContainer">
-      <img class="featuredRowItem" ng-src="{{ttt.image.styles.large}}" ng-repeat="ttt in featuredRowData" ng-click="ButtonClick()">
+    <div class="featuredRowContainer" ng-controller="FeaturedRowCtrl">
+      <img class="featuredRowItem" ng-src="{{ttt.image.styles.large}}" ng-repeat="ttt in featuredRowData" >
     </div>
+
 
   </body>
 </html>

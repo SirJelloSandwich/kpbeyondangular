@@ -2,13 +2,15 @@
 
 /* Controllers */
 
-var beyondTodayApp = angular.module('beyondTodayApp', []);
+var beyondTodayApp  = angular.module('beyondTodayApp', []);
+//var this = beyondTodayApp;
+
 beyondTodayApp.featuredUrl = 'http://www.ucg.org/api/v1.0/featured_media';
 beyondTodayApp.mediaUrl = 'http://www.ucg.org/api/v1.0/media/';
 beyondTodayApp.finalFeaturedUrl = "";
 beyondTodayApp.featuredIds = "";
 
-beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', function($scope, $http) {
+beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
   $scope.pos = 0;
   $http.get(beyondTodayApp.featuredUrl).success(function(data) {
 
@@ -22,13 +24,44 @@ beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', function($scope
     $http.get(beyondTodayApp.finalFeaturedUrl).success(function(data) {
 
         $scope.featuredRowData = data.data;
+        $(".featuredRowContainer").css('width',data.data.length *845);
       });
   });
+  $scope.$on('keydown', function( msg, code ) {
+    //console.log("down"+code);
+    switch (code) {
+      case 37://LEFT
 
-  $scope.ButtonClick = function () {
-        $scope.pos+=200;
-        $(".featuredRowContainer").css('-webkit-transform', 'translate3d('+$scope.pos+'px,0px,0px)');
+        break;
+      case 38://UP
 
-       }
+        break;
+      case 39://RIGHT
+
+        break;
+      case 40://DOWN
+
+        break;
+
+      default:
+        break;
+
+    }
+ });
+ $scope.$on('keyup', function( msg, code ) {
+   //console.log("up"+code);
+});
+
 
 }]);
+
+beyondTodayApp.directive('keyTrap', function() {
+  return function( scope, elem ) {
+    elem.bind('keydown', function( event ) {
+      scope.$broadcast('keydown', event.keyCode );
+    });
+    elem.bind('keyup', function( event ) {
+      scope.$broadcast('keyup', event.keyCode );
+    });
+  };
+});
