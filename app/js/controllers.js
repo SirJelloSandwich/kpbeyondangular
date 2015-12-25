@@ -2,16 +2,11 @@
 
 /* Controllers */
 
-var beyondTodayApp  = angular.module('beyondTodayApp', []);
-//var this = beyondTodayApp;
+var beyondtodayControllers = angular.module('beyondtodayControllers', []);
 
-beyondTodayApp.featuredUrl = 'http://www.ucg.org/api/v1.0/featured_media';
-beyondTodayApp.mediaUrl = 'http://www.ucg.org/api/v1.0/media/';
-beyondTodayApp.finalFeaturedUrl = "";
-beyondTodayApp.featuredIds = "";
-
-beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
-  $scope.pos = 0;
+beyondtodayControllers.controller('FeaturedRowCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  $scope.pos = -307.5;
+  var index = 1;
   $http.get(beyondTodayApp.featuredUrl).success(function(data) {
 
     for(var fff in data.data){
@@ -28,16 +23,25 @@ beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', '$window', func
       });
   });
   $scope.$on('keydown', function( msg, code ) {
-    //console.log("down"+code);
-    switch (code) {
-      case 37://LEFT
 
+    switch (code) {
+      case 13://SELECT
+
+        break;
+      case 37://LEFT
+      if(index === 0){return;}
+      index-=1;
+      $scope.pos +=845;
+      $(".featuredRowContainer").css('-webkit-transform','translate3d('+ $scope.pos +'px,0px,0px)');
         break;
       case 38://UP
 
         break;
       case 39://RIGHT
-
+        if(index === $scope.featuredRowData.length-1){return;}
+        index+=1;
+        $scope.pos -=845;
+        $(".featuredRowContainer").css('-webkit-transform','translate3d('+ $scope.pos +'px,0px,0px)');
         break;
       case 40://DOWN
 
@@ -49,19 +53,8 @@ beyondTodayApp.controller('FeaturedRowCtrl', ['$scope', '$http', '$window', func
     }
  });
  $scope.$on('keyup', function( msg, code ) {
-   //console.log("up"+code);
+
 });
 
 
 }]);
-
-beyondTodayApp.directive('keyTrap', function() {
-  return function( scope, elem ) {
-    elem.bind('keydown', function( event ) {
-      scope.$broadcast('keydown', event.keyCode );
-    });
-    elem.bind('keyup', function( event ) {
-      scope.$broadcast('keyup', event.keyCode );
-    });
-  };
-});

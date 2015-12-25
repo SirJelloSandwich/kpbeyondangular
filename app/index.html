@@ -3,14 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Beyond Today</title>
-    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
 
     <link rel="stylesheet" href="css/app.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
   </head>
   <body key-trap>
+
+    <div class="fixedFocusBorder"></div>
 
     <div class="featuredRowContainer" ng-controller="FeaturedRowCtrl">
       <img class="featuredRowItem" ng-src="{{ttt.image.styles.large}}" ng-repeat="ttt in featuredRowData" >
