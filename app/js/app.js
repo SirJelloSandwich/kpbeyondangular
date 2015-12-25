@@ -19,7 +19,7 @@ beyondTodayApp.config(['$routeProvider',
       when('/app', {
         templateUrl: 'index.html',
         controller: 'FeaturedRowCtrl'
-      }).    
+      }).
       otherwise({
         redirectTo: '/app'
       });
