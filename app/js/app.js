@@ -17,7 +17,7 @@ beyondTodayApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/app', {
-        templateUrl: 'index.html',
+        templateUrl: 'partials/landingpage.html',
         controller: 'FeaturedRowCtrl'
       }).
       otherwise({
