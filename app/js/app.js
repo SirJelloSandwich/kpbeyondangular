@@ -18,7 +18,11 @@ beyondTodayApp.config(['$routeProvider',
     $routeProvider.
       when('/app', {
         templateUrl: 'partials/landingpage.html',
-        controller: 'FeaturedRowCtrl'
+        controller: 'LandingPageCtrl'
+      }).
+      when('/app/springboard', {
+        templateUrl: '',
+        controller: ''
       }).
       otherwise({
         redirectTo: '/app'
