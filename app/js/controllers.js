@@ -4,7 +4,12 @@
 
 var beyondtodayControllers = angular.module('beyondtodayControllers', []);
 
-beyondtodayControllers.controller('LandingPageCtrl', ['$scope', '$http', function($scope, $http) {
+beyondtodayControllers.controller('SpringboardCtrl', ['$scope', '$http', function($scope, $http) {
+  console.log("In herer");
+
+}]);
+
+beyondtodayControllers.controller('LandingPageCtrl', ['$scope', '$http','$window' ,function($scope, $http, $window) {
   $scope.pos = -307.5;
   var index = 1;
 
@@ -15,12 +20,14 @@ beyondtodayControllers.controller('LandingPageCtrl', ['$scope', '$http', functio
       }
       beyondTodayApp.featuredIds = beyondTodayApp.featuredIds.substring(0, beyondTodayApp.featuredIds.length - 1);
       beyondTodayApp.finalFeaturedUrl = beyondTodayApp.mediaUrl + beyondTodayApp.featuredIds;
+
       console.log("success0");
     })
     .error(function(data, status) {
       console.error('Repos error0', status, data);
     })
     .finally(function() {
+
       console.log("finally finished repos0");
       $http.get(beyondTodayApp.finalFeaturedUrl)
         .success(function(data1) {
@@ -32,7 +39,10 @@ beyondtodayControllers.controller('LandingPageCtrl', ['$scope', '$http', functio
           console.error('Repos error1', status, data);
         })
         .finally(function() {
+          beyondTodayApp.finalFeaturedUrl = "";
+          beyondTodayApp.featuredIds = "";
           console.log("finally finished repos1");
+          //$scope.$apply();
         });
     });
 
@@ -40,7 +50,9 @@ beyondtodayControllers.controller('LandingPageCtrl', ['$scope', '$http', functio
 
     switch (code) {
       case 13: //SELECT
+        console.log("select");
 
+        $window.location.href =  '#/app/springboard' ;
         break;
       case 37: //LEFT
         if (index === 0) {
